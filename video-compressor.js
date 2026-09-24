@@ -456,7 +456,7 @@ async function demuxMP4(file) {
       // ===== 音声トラック検出（AACのみ対応）=====
       if (info.audioTracks && info.audioTracks.length > 0) {
         const at = info.audioTracks[0];
-        if (at.codec && at.codec.startsWith('mp4a.40')) {
+        if (at.codec === 'mp4a.40.2') {
           audioTrack = at;
           audioDone = false;
           addDebugLog('INFO', `元動画の音声: AAC ${at.audio.channel_count}ch ${at.audio.sample_rate}Hz → そのまま出力にコピー`);
