@@ -650,7 +650,12 @@ function parseAudioSpecificConfig(asc) {
     return null;
   }
 
-  return { sampleRate, numberOfChannels: channelConfig, objectType };
+  const CHANNEL_CONFIG_TO_COUNT = [0, 1, 2, 3, 4, 5, 6, 8];
+  const numberOfChannels = CHANNEL_CONFIG_TO_COUNT[channelConfig];
+  if (!numberOfChannels) return null; // 8~15は未定義のため非対応
+
+  return { sampleRate, numberOfChannels, objectType };
+
 }
 
 // decoder description — W3C公式サンプルと同じ方法
